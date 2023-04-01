@@ -1,13 +1,18 @@
+# LudovicARHIMAN
+
 from random import randint
 import re
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from termcolor import colored
+from math import * 
+
+
 
 def quadratic_eq():
     '''
-    "equation 2nd dg random
+    quadratics equations
     '''  
     a = randint(-10,10)
     b = randint(-10,10)
@@ -15,9 +20,10 @@ def quadratic_eq():
     return f"{a}x^2 + {b}x + {c} = 0"     
 
 
+
 def non_quadratic_eq():
     '''
-    equation qui ne sont pas du 2nd dg
+    non-quadratics equations
     '''
     a = randint(-10,10)
     b = randint(-10,10)
@@ -26,21 +32,28 @@ def non_quadratic_eq():
     return f"{a}x^3 + {b}x^2 + {c}x + {d} = 0"
 
 
+
 # Generate 100 quadratics and non-quadratics equations
 quadratic_equations = [quadratic_eq() for _ in range(100)]
 non_quadratic_equations = [non_quadratic_eq() for _ in range(100)]
 
 
+
 def extract_features(equation):
     ''' 
-    Extrait les coefficients a, b et c de l'equation 
+    take coefficient from the equation 
     
     '''
-    m = re.match(r"(-?\d+)x\^2\s*\+\s*(-?\d+)x\s*\+\s*(-?\d+)\s*=\s*0", equation) #model equation 2nd dg (permet de reconaitre des coefficients depuis un model dans une équation)
-    if m:
-        return [int(m.group(1)), int(m.group(2)), int(m.group(3))] # give all the coeficient as a list 
-    else:
-        return None
+   
+    patt = re.match(r"(-?\d+)x\^2\s*\+\s*(-?\d+)x\s*\+\s*(-?\d+)\s*=\s*0", equation) # use regular espression to 
+    
+    
+    if patt:
+        return [int(patt.group(1)), int(patt.group(2)), int(patt.group(3))] # give all the coeficient as a list
+    
+    return None
+
+
 
 
 # Convert the quadratic and non-quadratic equations into feature vectors (from regular expression)
@@ -60,15 +73,16 @@ for equation in non_quadratic_equations:
         y.append(0)
 
 
+
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Create a decision tree classifier and train it on the training set
-clf = DecisionTreeClassifier(random_state=42)
-clf.fit(X_train, y_train)
+modl = DecisionTreeClassifier(random_state=42)
+modl.fit(X_train, y_train)
 
 # Make predictions on the testing set and calculate accuracy
-y_pred = clf.predict(X_test)
+y_pred = modl.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
 
@@ -78,12 +92,6 @@ def accuracy_color():
         return colored(accuracy, 'green')
     else: 
         return colored(accuracy,'red')
-
-
-
-
-
-
 
 
 
@@ -100,9 +108,38 @@ def is_quadratic_eq(eq, model):
 
 
 
+def CalcRacine(a,b,c):
+    delta = (b**2)-4*a*c
+
+    if delta >0:
+        racine1=(-(b)-sqrt(delta))/(2*a)
+        racine2=(-(b)+sqrt(delta))/(2*a)
+        return racine1, racine2, "sont solution de l'equation"
+
+    if delta==0:
+        return (-(b))/(2*a) , "est la solution à l'équation"
+
+    if delta<0:
+        return "l'equation n'admet pas de solution"
+
+
+
+def extract_features(equation):
+    a , b , c = is_quadratic_eq(equation)
+    if a != 0 : 
+        return (a , b , c)
+    else: 
+        return None
+
+
+# Train logistic regression (scikit-learn)
+model = LogisticRegression()
+model.fit(X, y)
+
 
 
 print(accuracy_color())
-eq = "30x^2 + 2x + 4 = 0"
-is_quadratic = is_quadratic_eq(eq , clf )
-print(is_quadratic)
+eq = "x^2 + 5x + 2 = 0"
+is_quadratic = is_quadratic_eq(eq , modl)
+
+
