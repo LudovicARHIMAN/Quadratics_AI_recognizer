@@ -17,7 +17,7 @@ def quadratic_eq():
     a = randint(-10,10)
     b = randint(-10,10)
     c = randint(-10,10)
-    return f"{a}x^2 + {b}x + {c} = 0"     
+    return f"{a}x^2 + {b}x + {c} = 0"
 
 
 
