@@ -25,12 +25,11 @@ def non_quadratic_eq():
 quadratic_equations = [quadratic_eq() for _ in range(100)]
 non_quadratic_equations = [non_quadratic_eq() for _ in range(100)]
 
-
 # Define a function to extract coefficients from the equation
 def extract_features(equation):
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", equation)
+    match = re.match(r"(-?\d+)x\^2\s*\+\s*(-?\d+)x\s*\+\s*(-?\d+)\s*=\s*0", equation)
     if match:
-        return [int(match.group(1) or 1), int(match.group(2) or 0), int(match.group(3) or 0)]
+        return [int(match.group(1)), int(match.group(2)), int(match.group(3)]
     return None
 
 # Convert equations into feature vectors and labels
@@ -65,7 +64,7 @@ def accuracy_color():
         return colored(accuracy, 'green')
     return colored(accuracy, 'red')
 
-print("Accuracy:", accuracy_color())
+print("Decision Tree Classifier Accuracy:", accuracy_color())
 
 # Define a function to check if an equation is quadratic
 def is_quadratic_eq(eq, model):
@@ -80,6 +79,6 @@ def is_quadratic_eq(eq, model):
     return colored(False, 'red')
 
 # Test the is_quadratic_eq function with an example equation
-example_eq = "-2x^2 + 51x + 2  = 0 "
+example_eq = "x^2 + 5x + 2 = 0"
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")

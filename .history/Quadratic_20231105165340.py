@@ -80,6 +80,6 @@ def is_quadratic_eq(eq, model):
     return colored(False, 'red')
 
 # Test the is_quadratic_eq function with an example equation
-example_eq = "-2x^2 + 51x + 2  = 0 "
+example_eq = "x^2 + 51 + 2 = 0"
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
