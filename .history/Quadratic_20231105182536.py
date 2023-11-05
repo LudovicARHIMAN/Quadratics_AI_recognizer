@@ -99,24 +99,21 @@ def calc_root(a,b,c):
     if delta >0:
         root1=(-(b)-sqrt(delta))/(2*a)
         root2=(-(b)+sqrt(delta))/(2*a)
-        root1 = "X1 = " + str(root1)
-        root2 = "X2 = " + str(root2)
-        
-        return colored(root1,'red') +" and " + colored(root2,'red') +  " are solution of the equation."
+        return root1, root2, "are both solutions of the equation"
 
     if delta==0:
-        return (-(b))/(2*a) , "is the unique solution of the eqiation."
+        return (-(b))/(2*a) , "is the unique solution of the eqiation"
 
     if delta<0:
-        return "This equation has no solution for x in the real set."
+        return "This equation has no solution for x in the real set"
 
 
 def solve_eq(eq): 
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", eq)
+    re.math = re.eq_patt(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", eq)
     if is_quadratic:
-        a = int(match.group(1) or 1)
-        b = int(match.group(2) or 0)
-        c = int(match.group(3) or 0)
+        a = int(eq_patt.group(1) or 1)
+        b = int(eq_patt.group(2) or 0)
+        c = int(eq_patt.group(3) or 0)
 
     return calc_root(a,b,c)
     
@@ -124,10 +121,10 @@ def solve_eq(eq):
 
 # Test the is_quadratic_eq function with an example equation
 print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 44x + 2 = 0"
+example_eq = "2x^2 + 2x + 22 = 0"
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
 
 
 
-print(solve_eq(example_eq))
+solve_eq(example_eq)

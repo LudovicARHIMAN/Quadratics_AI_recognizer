@@ -35,7 +35,8 @@ non_quadratic_equations = [non_quadratic_eq() for _ in range(100)]
 
 # Define a function to extract coefficients from the equation
 def extract_features(equation):
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", equation)
+    match = re.match(r"(-?\d*)x\^2\s*([+-]\s*-?\d*)x\s*([+-]\s*-?\d*)\s*=\s*0", equation)
+
     if match:
         return [int(match.group(1) or 1), int(match.group(2) or 0), int(match.group(3) or 0)]
     return None

@@ -35,11 +35,24 @@ non_quadratic_equations = [non_quadratic_eq() for _ in range(100)]
 
 # Define a function to extract coefficients from the equation
 def extract_features(equation):
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", equation)
+    pattern = r"(-?\d*)x\^2\s*([-+])\s*(\d*)x\s*([-+])\s*(\d*)\s*=\s*0"
+    match = re.match(pattern, equation)
+    
     if match:
-        return [int(match.group(1) or 1), int(match.group(2) or 0), int(match.group(3) or 0)]
-    return None
+        a = int(match.group(1) or 1)
+        op1 = match.group(2)
+        b = int(match.group(3) or 0)
+        op2 = match.group(4)
+        c = int(match.group(5) or 0)
 
+        if op1 == '-' and b != 0:
+            b = -b
+
+        if op2 == '-' and c != 0:
+            c = -c
+
+        return [a, b, c]
+    return None
 
 
 # Convert equations into feature vectors and labels
@@ -112,7 +125,7 @@ def calc_root(a,b,c):
 
 
 def solve_eq(eq): 
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", eq)
+    match = re.match(r"(-?\d*)x\^2\s*([-+])\s*(\d*)x\s*([-+])\s*(\d*)\s*=\s*0", eq)
     if is_quadratic:
         a = int(match.group(1) or 1)
         b = int(match.group(2) or 0)

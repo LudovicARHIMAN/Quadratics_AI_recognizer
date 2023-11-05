@@ -35,10 +35,18 @@ non_quadratic_equations = [non_quadratic_eq() for _ in range(100)]
 
 # Define a function to extract coefficients from the equation
 def extract_features(equation):
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", equation)
+    match = re.match(r"(-?\d*)x\^2\s*([+-]\s*-?\d*)x\s*([+-]\s*-?\d*)\s*=\s*0", equation)
     if match:
-        return [int(match.group(1) or 1), int(match.group(2) or 0), int(match.group(3) or 0)]
-    return None
+        a = match.group(1) or "1"  # Use "1" if group is empty
+        b = match.group(2) or "0"  # Use "0" if group is empty
+        c = match.group(3) or "0"  # Use "0" if group is empty
+        a = int(a.replace(" ", ""))
+        b = int(b.replace(" ", ""))
+        c = int(c.replace(" ","")
+
+    print([a, b, c])
+else:
+    print("Equation format not recognized")
 
 
 
@@ -124,7 +132,7 @@ def solve_eq(eq):
 
 # Test the is_quadratic_eq function with an example equation
 print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 44x + 2 = 0"
+example_eq = "2x^2 - 44x + 2 = 0"
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
 

@@ -112,7 +112,7 @@ def calc_root(a,b,c):
 
 
 def solve_eq(eq): 
-    match = re.match(r"(-?\d*)x\^2\s*\+\s*(-?\d*)x\s*\+\s*(-?\d*)\s*=\s*0", eq)
+    match = re.match(r"(-?\d*)x\^2\s*([-+])\s*(\d*)x\s*([-+])\s*(\d*)\s*=\s*0", eq)
     if is_quadratic:
         a = int(match.group(1) or 1)
         b = int(match.group(2) or 0)

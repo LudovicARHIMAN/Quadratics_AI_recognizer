@@ -99,16 +99,13 @@ def calc_root(a,b,c):
     if delta >0:
         root1=(-(b)-sqrt(delta))/(2*a)
         root2=(-(b)+sqrt(delta))/(2*a)
-        root1 = "X1 = " + str(root1)
-        root2 = "X2 = " + str(root2)
-        
-        return colored(root1,'red') +" and " + colored(root2,'red') +  " are solution of the equation."
+        return colored(root1, ''), root2, "are both solutions of the equation"
 
     if delta==0:
-        return (-(b))/(2*a) , "is the unique solution of the eqiation."
+        return (-(b))/(2*a) , "is the unique solution of the eqiation"
 
     if delta<0:
-        return "This equation has no solution for x in the real set."
+        return "This equation has no solution for x in the real set"
 
 
 def solve_eq(eq): 
@@ -124,7 +121,7 @@ def solve_eq(eq):
 
 # Test the is_quadratic_eq function with an example equation
 print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 44x + 2 = 0"
+example_eq = "2x^2 + 44x + 0 = 0"
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
 
