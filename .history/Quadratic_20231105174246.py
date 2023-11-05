@@ -115,5 +115,3 @@ example_eq = "2x^2 + 2x + 22  = 0 "
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
 
-
-

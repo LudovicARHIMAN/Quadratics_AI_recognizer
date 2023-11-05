@@ -93,19 +93,7 @@ def is_quadratic_eq(eq, model):
 
 
 # Solve the equation, find the root.s 
-def CalcRacine(a,b,c):
-    delta = (b**2)-4*a*c
 
-    if delta >0:
-        root1=(-(b)-sqrt(delta))/(2*a)
-        root2=(-(b)+sqrt(delta))/(2*a)
-        return root1, root2, "are both solutions of the equation"
-
-    if delta==0:
-        return (-(b))/(2*a) , "is the unique solution of the eqiation"
-
-    if delta<0:
-        return "This equation has no solution for x in the real set"
 
 
 

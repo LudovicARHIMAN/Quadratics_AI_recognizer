@@ -9,7 +9,6 @@ from math import *
 
 
 
-
 # Define functions for generating quadratic and non-quadratic equations
 def quadratic_eq():
     a = randint(-10, 10)
@@ -93,27 +92,30 @@ def is_quadratic_eq(eq, model):
 
 
 # Solve the equation, find the root.s 
+
+
+
 def CalcRacine(a,b,c):
     delta = (b**2)-4*a*c
 
     if delta >0:
-        root1=(-(b)-sqrt(delta))/(2*a)
-        root2=(-(b)+sqrt(delta))/(2*a)
-        return root1, root2, "are both solutions of the equation"
+        racine1=(-(b)-sqrt(delta))/(2*a)
+        racine2=(-(b)+sqrt(delta))/(2*a)
+        return racine1, racine2, "sont solution de l'equation"
 
     if delta==0:
-        return (-(b))/(2*a) , "is the unique solution of the eqiation"
+        return (-(b))/(2*a) , "est la solution à l'équation"
 
     if delta<0:
-        return "This equation has no solution for x in the real set"
+        return "l'equation n'admet pas de solution"
+
+
 
 
 
 # Test the is_quadratic_eq function with an example equation
 print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 2x + 22  = 0 "
+example_eq = "2x^2 + x + 2  = 0 "
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
-
-
 

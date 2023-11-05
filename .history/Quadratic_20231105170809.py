@@ -6,8 +6,7 @@ from sklearn.metrics import accuracy_score
 from termcolor import colored
 import sklearn.linear_model as sk
 from math import *
-
-
+from  
 
 
 # Define functions for generating quadratic and non-quadratic equations
@@ -97,9 +96,9 @@ def CalcRacine(a,b,c):
     delta = (b**2)-4*a*c
 
     if delta >0:
-        root1=(-(b)-sqrt(delta))/(2*a)
-        root2=(-(b)+sqrt(delta))/(2*a)
-        return root1, root2, "are both solutions of the equation"
+        racine1=(-(b)-sqrt(delta))/(2*a)
+        racine2=(-(b)+sqrt(delta))/(2*a)
+        return racine1, racine2, "are both solution of the equation"
 
     if delta==0:
         return (-(b))/(2*a) , "is the unique solution of the eqiation"
@@ -111,9 +110,8 @@ def CalcRacine(a,b,c):
 
 # Test the is_quadratic_eq function with an example equation
 print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 2x + 22  = 0 "
+example_eq = "2x^2 + x + 2  = 0 "
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
-
 
 

@@ -111,9 +111,9 @@ def CalcRacine(a,b,c):
 
 # Test the is_quadratic_eq function with an example equation
 print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 2x + 22  = 0 "
+example_eq = "2x^2 + x + 2  = 0 "
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
 
 
-
+printeq('\frac{1}{sqrt{x}}')

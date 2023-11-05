@@ -7,9 +7,6 @@ from termcolor import colored
 import sklearn.linear_model as sk
 from math import *
 
-
-
-
 # Define functions for generating quadratic and non-quadratic equations
 def quadratic_eq():
     a = randint(-10, 10)
@@ -17,16 +14,12 @@ def quadratic_eq():
     c = randint(-10, 10)
     return f"{a}x^2 + {b}x + {c} = 0"
 
-
-
 def non_quadratic_eq():
     a = randint(-10, 10)
     b = randint(-10, 10)
     c = randint(-10, 10)
     d = randint(-10, 10)
     return f"{a}x^3 + {b}x^2 + {c}x + {d} = 0"
-
-
 
 # Generate 100 quadratic and 100 non-quadratic equations
 quadratic_equations = [quadratic_eq() for _ in range(100)]
@@ -39,8 +32,6 @@ def extract_features(equation):
     if match:
         return [int(match.group(1) or 1), int(match.group(2) or 0), int(match.group(3) or 0)]
     return None
-
-
 
 # Convert equations into feature vectors and labels
 X = []
@@ -61,8 +52,6 @@ for equation in non_quadratic_equations:
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-
-
 # Create a decision tree classifier and train it on the training set
 dt_classifier = DecisionTreeClassifier(random_state=42)
 dt_classifier.fit(X_train, y_train)
@@ -76,9 +65,9 @@ def accuracy_color():
         return colored(accuracy, 'green')
     return colored(accuracy, 'red')
 
+print("Accuracy:", accuracy_color())
 
-
-# check if an equation is quadratic or not from the dataset
+# Define a function to check if an equation is quadratic
 def is_quadratic_eq(eq, model):
     features = extract_features(eq)
     if features:
@@ -90,30 +79,8 @@ def is_quadratic_eq(eq, model):
     
     return colored(False, 'red')
 
-
-
-# Solve the equation, find the root.s 
-def CalcRacine(a,b,c):
-    delta = (b**2)-4*a*c
-
-    if delta >0:
-        root1=(-(b)-sqrt(delta))/(2*a)
-        root2=(-(b)+sqrt(delta))/(2*a)
-        return root1, root2, "are both solutions of the equation"
-
-    if delta==0:
-        return (-(b))/(2*a) , "is the unique solution of the eqiation"
-
-    if delta<0:
-        return "This equation has no solution for x in the real set"
-
-
-
 # Test the is_quadratic_eq function with an example equation
-print("Accuracy:", accuracy_color())
-example_eq = "2x^2 + 2x + 22  = 0 "
+example_eq = "2x^2 + 51x + 2  = 0 "
 is_quadratic = is_quadratic_eq(example_eq, dt_classifier)
 print(f"Is the equation quadratic? {is_quadratic}")
-
-
 
