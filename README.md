@@ -1,1 +1,1 @@
-# Quadratics_IA_recognizer
+# Quadratics AI recognizer
